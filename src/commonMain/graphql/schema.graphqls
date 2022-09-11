@@ -1,0 +1,82 @@
+type DeckModel {
+  code: String!
+  createdAt: String!
+  deckName: String!
+  id: Int!
+  isPublic: Boolean!
+  tags: [String!]!
+  user: String!
+  wordIds: [Int!]!
+  words: [WordModel!]!
+}
+
+type FullDeckModel {
+  code: String!
+  createdAt: String!
+  deckName: String!
+  id: Int!
+  isPublic: Boolean!
+  tags: [String!]!
+  user: String!
+  words: [WordModel!]!
+}
+
+type Mutation {
+  addDeck(deckname: String!): DeckModel!
+  addTagToDeck(id: Int!, tag: String!): Int!
+  addTagsToDeck(id: Int!, tags: [String!]!): Int!
+  addWordsToDeck(id: Int!, wordIds: [Int!]!): Int!
+  deleteDeck(id: Int!): Int!
+  removeTagsFromDeck(id: Int!, tags: [String!]!): Int!
+  removeWordsFromDeck(id: Int!, wordIds: [Int!]!): Int!
+  updateDeck(id: Int!, deckname: String, isPublic: Boolean): Int!
+  addWord(
+    word: String
+    transliteration: String
+    ipa: String
+    translation: String
+    language: String
+    type: String
+  ): WordModel!
+  answerWord(id: Int!, isCorrect: Boolean!): Int!
+  deleteWord(id: Int!): Int!
+  updateWord(
+    id: Int!
+    word: String
+    transliteration: String
+    ipa: String
+    translation: String
+    language: String
+    level: Int
+    type: String
+  ): WordModel!
+  addTag(tag: String!): Int!
+  updateUser(username: String, password: String): Int!
+}
+
+type Query {
+  hello: String!
+  deck(id: Int!): FullDeckModel!
+  myDecks(key: Int): [DeckModel!]!
+  publicDecks(key: Int): [DeckModel!]!
+  searchDeck(key: String!): [DeckModel!]!
+  myWords(key: Int): [WordModel!]!
+  searchWords(key: String!): [WordModel!]!
+  word(id: Int!): WordModel!
+  words(ids: [Int!]!): [WordModel!]!
+  allTags: [String!]!
+}
+
+type WordModel {
+  accessCount: Int!
+  createdAt: String!
+  id: Int!
+  ipa: String!
+  language: String!
+  lastAccess: String!
+  level: Int!
+  translation: String!
+  transliteration: String!
+  type: String!
+  word: String!
+}

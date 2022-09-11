@@ -1,0 +1,13 @@
+site:
+  title: "KtApolloIssues"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/js/packages/ktapolloissues/kotlin/ktapolloissues.js"
+      api: "build/libs/ktapolloissues.jar"
+    prod:
+      siteRoot: ".kobweb/site"
+
+  port: 8080
